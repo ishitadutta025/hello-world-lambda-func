@@ -1,5 +1,5 @@
 {
-  "hello_world-role": {
+  "audit_producer-role": {
     "predefined_policies": [],
     "principal_service": "lambda",
     "custom_policies": [
@@ -8,4 +8,4 @@
     "resource_type": "iam_role",
     "tags": {}
   }
-} 
+}
