@@ -1,11 +1,4 @@
-// exports.handler = async (event) => {
-//     // TODO implement
-//     const response = {
-//         statusCode: 200,
-//         body: JSON.stringify('Hello from Lambda!'),
-//     };
-//     return response;
-// };
+
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { DynamoDBDocumentClient, PutCommand } from "@aws-sdk/lib-dynamodb";
 import { v4 as uuidv4 } from "uuid";
