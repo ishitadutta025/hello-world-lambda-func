@@ -5,7 +5,6 @@
     "custom_policies": [
       "lambda-basic-execution"
     ],
-    "resource_type": "iam_role",
-    "tags": {}
+    "resource_type": "iam_role"
   }
 }
