@@ -42,7 +42,9 @@
     "custom_policies": [
       "lambda-basic-execution"
     ],
-    "allowed_accounts": [],
+    "allowed_accounts": [
+      "890742610830"
+    ],
     "instance_profile": false,
     "permissions_boundary": "",
     "tags": {}
