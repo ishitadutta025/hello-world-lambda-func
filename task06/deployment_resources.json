@@ -22,6 +22,16 @@
           ],
           "Effect": "Allow",
           "Resource": "*"
+        },
+        {
+          "Action": [
+            "dynamodb:DescribeStream",
+            "dynamodb:GetShardIterator",
+            "dynamodb:GetRecords",
+            "dynamodb:ListStreams"
+          ],
+          "Effect": "Allow",
+          "Resource": "arn:aws:dynamodb:eu-west-1:890742610830:table/cmtr-3694804b-Configuration/stream/*"
         }
       ],
       "Version": "2012-10-17"

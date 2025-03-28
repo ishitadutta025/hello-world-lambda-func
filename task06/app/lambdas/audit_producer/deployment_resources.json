@@ -3,13 +3,12 @@
     "predefined_policies": [],
     "principal_service": "lambda",
     "custom_policies": [
-      "lambda-basic-execution",
-      "dynamodb:GetShardIterator",
-      "dynamodb:DescribeStream",
-      "dynamodb:ListStreams",
-      "dynamodb:GetRecords"
+      "lambda-basic-execution"
     ],
     "resource_type": "iam_role",
+    "allowed_accounts": [
+      "890742610830"
+    ],
     "tags": {}
   }
 }
