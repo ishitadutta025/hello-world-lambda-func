@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "task11_api",
+    "title": "task12_api",
     "version": "2025-03-29T20:16:58Z"
   },
   "servers": [
@@ -570,9 +570,7 @@
         "in": "header",
         "x-amazon-apigateway-authtype": "cognito_user_pools",
         "x-amazon-apigateway-authorizer": {
-          "providerARNs": [
-            "arn:aws:cognito-idp:eu-west-1:890742610830:userpool/eu-west-1_XakuWWcq5"
-          ],
+          "x-syndicate-cognito-userpool-names": ["${booking_userpool}"],
           "type": "cognito_user_pools"
         }
       }
