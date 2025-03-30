@@ -133,7 +133,7 @@ async function handleSignin(event) {
       return formatResponse(400, { error: "Authentication failed. Try again." });
     }
     return formatResponse(200, {
-      idToken: authResponse.AuthenticationResult.IdToken 
+      idToken: authResponse.AuthenticationResult.IdToken // ✅ Corrected key name
     });
   } catch (error) {
     console.error("Sign-in error:", error);
