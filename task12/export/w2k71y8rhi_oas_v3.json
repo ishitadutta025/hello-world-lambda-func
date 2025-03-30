@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "task12_api",
-    "version": "2025-03-29T20:16:58Z"
+    "version": "2025-03-14T04:35:52Z"
   },
   "servers": [
     {
@@ -17,6 +17,8 @@
   "paths": {
     "/reservations": {
       "get": {
+        "summary": "Get Reservations",
+        "description": "Fetches a list of all reservations.",
         "responses": {
           "200": {
             "description": "200 response",
@@ -57,6 +59,39 @@
         }
       },
       "post": {
+        "summary": "Create Reservation",
+        "description": "Creates a new reservation by submitting required information.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "date": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "time": {
+                    "type": "string"
+                  },
+                  "people_count": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "name",
+                  "date",
+                  "time",
+                  "people_count"
+                ]
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "200 response",
@@ -97,6 +132,8 @@
         }
       },
       "options": {
+        "summary": "CORS Preflight",
+        "description": "Handles CORS preflight requests to allow cross-origin requests.",
         "responses": {
           "200": {
             "description": "200 response",
@@ -147,6 +184,8 @@
     },
     "/tables": {
       "get": {
+        "summary": "Get Tables",
+        "description": "Fetches a list of all tables.",
         "responses": {
           "200": {
             "description": "200 response",
@@ -187,6 +226,33 @@
         }
       },
       "post": {
+        "summary": "Create Table",
+        "description": "Creates a new table by submitting required information.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "table_number": {
+                    "type": "integer"
+                  },
+                  "capacity": {
+                    "type": "integer"
+                  },
+                  "location": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "table_number",
+                  "capacity"
+                ]
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "200 response",
@@ -227,6 +293,8 @@
         }
       },
       "options": {
+        "summary": "CORS Preflight",
+        "description": "Handles CORS preflight requests to allow cross-origin requests for tables.",
         "responses": {
           "200": {
             "description": "200 response",
@@ -277,6 +345,30 @@
     },
     "/signin": {
       "post": {
+        "summary": "User Sign In",
+        "description": "Signs in a user by verifying credentials.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "username",
+                  "password"
+                ]
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "200 response",
@@ -291,6 +383,23 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Empty"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized, invalid credentials",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
@@ -312,6 +421,8 @@
         }
       },
       "options": {
+        "summary": "CORS Preflight",
+        "description": "Handles CORS preflight requests to allow cross-origin requests for the sign-in endpoint.",
         "responses": {
           "200": {
             "description": "200 response",
@@ -362,6 +473,35 @@
     },
     "/signup": {
       "post": {
+        "summary": "User Sign Up",
+        "description": "Registers a new user by creating a new account with provided details.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string",
+                    "format": "email"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "username",
+                  "email",
+                  "password"
+                ]
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "200 response",
@@ -376,6 +516,23 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Empty"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request, validation error",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
@@ -397,6 +554,8 @@
         }
       },
       "options": {
+        "summary": "CORS Preflight",
+        "description": "Handles CORS preflight requests to allow cross-origin requests for the signup endpoint.",
         "responses": {
           "200": {
             "description": "200 response",
@@ -447,6 +606,8 @@
     },
     "/tables/{tableId}": {
       "get": {
+        "summary": "Get Table Details",
+        "description": "Fetches details of a specific table based on the given `tableId`.",
         "parameters": [
           {
             "name": "tableId",
@@ -454,7 +615,8 @@
             "required": true,
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "The unique identifier for the table."
           }
         ],
         "responses": {
@@ -471,6 +633,23 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Empty"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Table not found",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
@@ -497,6 +676,8 @@
         }
       },
       "options": {
+        "summary": "CORS Preflight",
+        "description": "Handles CORS preflight requests to allow cross-origin requests for the tables endpoint.",
         "parameters": [
           {
             "name": "tableId",
@@ -504,7 +685,8 @@
             "required": true,
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "The unique identifier for the table."
           }
         ],
         "responses": {
@@ -570,16 +752,18 @@
         "in": "header",
         "x-amazon-apigateway-authtype": "cognito_user_pools",
         "x-amazon-apigateway-authorizer": {
-          "x-syndicate-cognito-userpool-names": ["${booking_userpool}"],
+          "x-syndicate-cognito-userpool-names": [
+            "${booking_userpool}"
+          ],
           "type": "cognito_user_pools"
         }
       }
     }
   },
   "x-syndicate-openapi-tags": {
-    "run_id": "JAP-11",
+    "run_id": "JAP-08",
     "run_type": "stm",
     "type": "user",
-    "user_id": "3694804b"
+    "user_id": "ee3a8896"
   }
 }
